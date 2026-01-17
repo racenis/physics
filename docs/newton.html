@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style.css"/>
+    <title>Newton's Laws -- Physics for Programmers</title>
+</head>
+<body>
+    <center>
+        <table width="640" border="1">
+            <tr>
+                <td>
+                    <center>
+                        <h1>
+                            Physics for Programmers
+                        </h1>
+                        <hr/>
+                        <h2>
+                            Newton's Laws
+                        </h2>
+                    </center>
+                    <hr/>
+
+                    <p>
+                        Isaac Newton is a guy who supposedly discovered a bunch of important
+                        stuff and wrote a bunch of supposedly important treatises. The measurement
+                        unit of &ldquo;ton&rdquo; is named after him.
+                    </p>
+
+                    <p>
+                        After inventing gravity and founding Apple Computer with his BFF Bill
+                        Gates in 1674, Newton decided to explain his work in a couple of simple
+                        rules in his 1687 autobiography <i>Philosophiæ Naturalis
+                        Principia Mathematica</i>.
+                    </p>
+
+                    <center>
+                        <br/>
+                        <i>
+                            &ldquo;If thingy goes straight, thingy does it until it gets
+                            forced not to.&rdquo;<br/>
+                            <img width="400" height="1" src="image/1px.gif"/>&ndash; Newton
+                        </i>
+                        <br/>
+                        <br/>
+                    </center>
+
+
+                    <center>
+                        <div id="1stlaw">
+                            <b>
+                                YOU NEED TO ENABLE JAVASCRIPT, YOU SILLY WUNKUS!
+                            </b>
+                        </div>
+                    </center>
+
+
+                    <center>
+                        <table border="1" width="480">
+                            <tr>
+                                <td>
+                                    <h4>
+                                        Note
+                                    </h4>
+                                    <hr/>
+                                    <p>
+                                        When Newton wrote this down they hadn't invented equations
+                                        yet. This is an artists rendition of the law.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+
+                    <p>
+                        Usually you depict the dimensions as little arrows on paper. These arrows
+                        are the <b>axii</b>. You can find the coordinate of a point by drawing a
+                        line perpendicular to an axis from a point to that axis.
+                    </p>
+
+                    <center>
+                        <img src="image/coords.gif" alt="Coordinate illustration."/><br/>
+                        <i>fig 1.2.1. Depiction of coordinates and their axii.</i>
+                    </center>
+
+                    <p>
+                        A coordinate can represent a point, a vector or basically any other
+                        thing that you want. The possibilities are literally endless.
+                    </p>
+
+                    <center>
+                        <p>
+                            <a href="newton.html">&laquo; Prev</a>
+                            | <a href="index.html">Back</a>
+                            | <a href="newton.html">Next &raquo;</a>
+                        </p>
+                    </center>
+
+                    <a href="">
+                </td>
+            </tr>
+        </table>
+    </center>
+
+<script src="lib.js"></script>
+
+<script>
+
+    // Demo: Bouncing Ball Simulation! >_<
+    let ballVelX = 2;
+    let ballVelY = 3;
+    let trailPoints = [];
+
+    new InteractiveViz({
+      containerId: "1stlaw",
+      title: "Bouncing Ball Physics Sim uwu",
+      canvasWidth: 500,
+      canvasHeight: 400,
+      
+      inputs: {
+        sliders: [
+          { id: "gravity", label: "Gravity", min: 0, max: 2, initial: 0.5, step: 0.1 },
+          { id: "bounce", label: "Bounce Factor", min: 0.5, max: 1, initial: 0.9, step: 0.05 }
+        ],
+        radios: [
+          { 
+            id: "mode", 
+            label: "Mode", 
+            options: [
+              ["bounce", "Bounce"], 
+              ["orbit", "Orbit Sun"]
+            ] 
+          }
+        ]
+      },
+      
+      icons: [
+        { id: "ball", emoji: "⚽", label: "Ball", x: 250, y: 100 },
+        { id: "sun", emoji: "☀️", label: "Sun", x: 250, y: 200 }
+      ],
+      
+      callbacks: {
+        // init callback uwu
+        onInit: (state) => {
+          console.log("Visualization initialized! :333");
+          state.custom = { lastBallPos: { x: 0, y: 0 } };
+        },
+        
+        // render callback - draw the scene! >_<
+        render: (ctx, state) => {
+          const ball = state.icons.ball;
+          const sun = state.icons.sun;
+          
+          // draw background gradient uwu
+          const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+          gradient.addColorStop(0, "#87CEEB");
+          gradient.addColorStop(1, "#E0F6FF");
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, 500, 400);
+          
+          // draw trail if in orbit mode :3
+          if (state.inputs.mode === "orbit" && trailPoints.length > 0) {
+            ctx.strokeStyle = "rgba(255, 100, 100, 0.3)";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(trailPoints[0].x, trailPoints[0].y);
+            for (let i = 1; i < trailPoints.length; i++) {
+              ctx.lineTo(trailPoints[i].x, trailPoints[i].y);
+            }
+            ctx.stroke();
+          }
+          
+          // draw sun glow effect uwu
+          if (state.inputs.mode === "orbit") {
+            const sunGlow = ctx.createRadialGradient(sun.x, sun.y, 5, sun.x, sun.y, 40);
+            sunGlow.addColorStop(0, "rgba(255, 200, 0, 0.5)");
+            sunGlow.addColorStop(1, "rgba(255, 200, 0, 0)");
+            ctx.fillStyle = sunGlow;
+            ctx.fillRect(sun.x - 40, sun.y - 40, 80, 80);
+          }
+          
+          // draw ground for bounce mode :3
+          if (state.inputs.mode === "bounce") {
+            ctx.fillStyle = "#8B4513";
+            ctx.fillRect(0, 380, 500, 20);
+          }
+        },
+        
+        // simulation tick - physics! :333
+        onSimulationTick: (state, deltaTime) => {
+          const ball = state.icons.ball;
+          const sun = state.icons.sun;
+          const mode = state.inputs.mode;
+          const dt = Math.min(deltaTime / 16.67, 2); // normalize to 60fps uwu
+          
+          if (mode === "bounce") {
+            // clear trail in bounce mode >_<
+            trailPoints = [];
+            
+            // apply gravity uwu
+            ballVelY += state.inputs.gravity * dt;
+            
+            // update position :3
+            ball.x += ballVelX * dt;
+            ball.y += ballVelY * dt;
+            
+            // bounce off walls! uwu
+            if (ball.x <= 15 || ball.x >= 485) {
+              ballVelX *= -state.inputs.bounce;
+              ball.x = ball.x <= 15 ? 15 : 485;
+            }
+            
+            // bounce off ground and ceiling! :333
+            if (ball.y >= 365) {
+              ballVelY *= -state.inputs.bounce;
+              ball.y = 365;
+            }
+            if (ball.y <= 15) {
+              ballVelY *= -state.inputs.bounce;
+              ball.y = 15;
+            }
+            
+            // update icon position >_<
+            const iconElem = document.getElementById("1stlaw-icon-ball");
+            if (iconElem) {
+              iconElem.style.left = ball.x + 'px';
+              iconElem.style.top = ball.y + 'px';
+            }
+          } 
+          else if (mode === "orbit") {
+            // gravity-based orbit! uwu
+            const dx = sun.x - ball.x;
+            const dy = sun.y - ball.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist > 5) { // avoid division by zero :3
+              const force = (state.inputs.gravity * 100) / (dist * dist);
+              const fx = (dx / dist) * force;
+              const fy = (dy / dist) * force;
+              
+              ballVelX += fx * dt;
+              ballVelY += fy * dt;
+            }
+            
+            // update position uwu
+            ball.x += ballVelX * dt;
+            ball.y += ballVelY * dt;
+            
+            // keep in bounds >_<
+            ball.x = Math.max(15, Math.min(485, ball.x));
+            ball.y = Math.max(15, Math.min(385, ball.y));
+            
+            // add to trail :333
+            trailPoints.push({ x: ball.x, y: ball.y });
+            if (trailPoints.length > 100) trailPoints.shift();
+            
+            // update icon position uwu
+            const iconElem = document.getElementById("1stlaw-icon-ball");
+            if (iconElem) {
+              iconElem.style.left = ball.x + 'px';
+              iconElem.style.top = ball.y + 'px';
+            }
+          }
+        },
+        
+        // icon drag callback uwu
+        onIconDrag: (iconId, x, y, state) => {
+          console.log(`${iconId} dragged to (${x.toFixed(0)}, ${y.toFixed(0)}) >_<`);
+          
+          // reset velocity when ball is dragged :3
+          if (iconId === "ball") {
+            ballVelX = 0;
+            ballVelY = 0;
+            trailPoints = [];
+          }
+        },
+        
+        // input change callback :333
+        onInputChange: (inputId, value, state) => {
+          console.log(`${inputId} changed to ${value} uwu`);
+        }
+      }
+    });
+</script>
+
+</body>
+</html>

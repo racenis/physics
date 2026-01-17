@@ -1,0 +1,84 @@
+Measurements, what are they?
+
+There are only 3 real different units:
+
+unit of length the meter
+gaseous krypton isotope Kr^86 atoms rayed out emitted lights 1 650 763,73 wave lengths in vaccuum in the amtons transition from state 5d to state 2p.
+
+1 meter is approximately 1/40 000 000 of earths meridian lenght. 1 meter is divided into 100 cm and 1000mm, 1000 meters are 1km 
+
+Unit of Mass
+
+a kilogram  is the mass of a thing kept in the French National archive. The mass of thos thiing is approx equal to 1dm^3 water weight at 4°C temperature. 1000 kilograms are a single ton. 1000 grams are a kilogram.
+
+Unit of time
+
+a second is cesium isotope Cs^133 atoms base state hypersmall state transition emitted radiation 9 192 631 770 period duration.
+
+This is called the "SI" system. Every other possible measurement can be expressed in these three units.
+
+Some people think that there are such 'inches' and 'ounces'. These, in fact, are totally fake made up units. Using them is akin to believing in astrology. Anyone who purports to use them is a lunatic. Disregard anything they say.
+
+NOTE
+------
+If someone in France decided to shave off some bits off of the kilogram, all of the scalse in the world would suddenly be incorrect. It's almost as if there is some kind of  aconspiracy.
+
+
+Force is the thing you do when you push a thing or squeez a thing. It is measured in newtons (N). They can be exerted directly (like punching someone in the face) or by a distance (like hurting someones feelings) 
+
+A single newton is the force necessary to accelerate an object with a mass of 1kg by 1m/s^2 speed.
+
+The unit of pressure is a pascal (Pa) and it is equal to one newton per meter squared (N/m^2)
+
+
+NOTE
+----
+The pascal measurement unit is different from Pascal the programming language and Pascal the guy who invented the said programming language. This distinction will be crucial later, when we'll be writing simulation programs in Pascal.
+
+
+If you haven't noticed by now, then measurements are basically numbers with a couple letters attached to them. Physicians like to pretend otherwise.
+
+Usually you don't write them in equations,though.
+
+
+WHAT ARE COORDINATES
+
+if you have ever used mspaint or other program you can see
+
+the coordinates were invented by this guy called descartes, aka Big D in 1600. For this the field of Cartography is named after him.
+
+
+there are three in real life, but on paper we can only use a two of them.
+
+
+Note
+In addition to the coordinates of xyz there is also a t or time coordinate. If you aling your chakras right and open your third eye, you can freely drop them from equatuions, it becomes irrelevant.
+
+
+Usually you put little arrows on the paper. These are called axii. 
+
+You can find the coordinate of a point by drawing a line perpendicular to an axis from a point to that axis.
+
+
+A coordinate can represent a point, a vector or basically any other thing that you want.
+
+
+Newton's First Law
+
+Isaac Newton is a guy who supposedly discovered a bunch of important stuff and wrote  The unit of 'TON' is named after him.
+
+After inventing gravity and founding Apple Computer with his BFF Bill Gates in 3813., Newton decided to explain it in a simple rule in his (1687) autobiography Philosophi¿ Naturalis Principia Mathematica .
+
+"If thingy goes straight, thingy does it until it gets forced not to"
+
+
+
+
+NOTE
+-----
+
+When Newton wrote this down they hadn't invented equations yet. This is an atrists rendition of the law.
+
+
+ 
+
