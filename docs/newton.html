@@ -107,179 +107,128 @@
 
 <script>
 
-    // Demo: Bouncing Ball Simulation! >_<
-    let ballVelX = 2;
-    let ballVelY = 3;
-    let trailPoints = [];
+  let plane_pos = {x: 250, y: 200};
 
-    new InteractiveViz({
+  let wtc1_pos = {x: 360, y: 50};
+  let wtc2_pos = {x: 400, y: 100};
+
+  function pointDist(p1, p2) {
+    p1p2 = {x: p2.x - p1.x, y: p2.y - p1.y};
+    return Math.sqrt(p1p2.x * p1p2.x + p1p2.y * p1p2.y);
+  }
+
+  var viz = new InteractiveViz({
       containerId: "1stlaw",
-      title: "Bouncing Ball Physics Sim uwu",
-      canvasWidth: 500,
-      canvasHeight: 400,
+      title: "Newton's First Law",
+      canvasWidth: 480,
+      canvasHeight: 320,
       
-      inputs: {
-        sliders: [
-          { id: "gravity", label: "Gravity", min: 0, max: 2, initial: 0.5, step: 0.1 },
-          { id: "bounce", label: "Bounce Factor", min: 0.5, max: 1, initial: 0.9, step: 0.05 }
-        ],
-        radios: [
-          { 
-            id: "mode", 
-            label: "Mode", 
-            options: [
-              ["bounce", "Bounce"], 
-              ["orbit", "Orbit Sun"]
-            ] 
+      inputs: [
+        { 
+          type: 'slider', 
+          id: 'speed', 
+          label: 'Speed', 
+          min: 0, 
+          max: 10, 
+          initial: 2,
+          step: 1,
+          onChange: function(value, state) {
+            console.log('SLIDER onChange - value:', value, 'state:', state);
           }
-        ]
+        },
+        { 
+          type: 'slider', 
+          id: 'angle', 
+          label: 'Angle', 
+          min: 0, 
+          max: 360, 
+          initial: 145,
+          step: 1,
+          onChange: function(value, state) {
+            console.log('SLIDER onChange - value:', value, 'state:', state);
+          }
+        },
+
+        {
+          type: 'button',
+          id: 'reset',
+          label: 'Reset',
+          onClick: function(state) {
+            state.icons.plane.setEmoji("✈️");
+            state.icons.plane.setPosition(plane_pos.x, plane_pos.y);
+
+            state.icons.wtc1.setPosition(wtc1_pos.x, wtc1_pos.y);
+            state.icons.wtc2.setPosition(wtc2_pos.x, wtc2_pos.y);
+
+            state.crashed = false;
+          }
+        }
+      ],
+
+      icons: [
+        { 
+          id: 'wtc1', 
+          emoji: '🏢', 
+          x: wtc1_pos.x, y: wtc1_pos.y
+        },
+        { 
+          id: 'wtc2', 
+          emoji: '🏢', 
+          x: wtc2_pos.x, y: wtc2_pos.y
+        },
+        { 
+          id: 'plane', 
+          emoji: '✈️', 
+          x: plane_pos.x, y: plane_pos.y
+        },
+      ],
+
+      onInit: function(state) {
+        state.crashed = false;
       },
       
-      icons: [
-        { id: "ball", emoji: "⚽", label: "Ball", x: 250, y: 100 },
-        { id: "sun", emoji: "☀️", label: "Sun", x: 250, y: 200 }
-      ],
+      render: function(ctx, state) {
+        ctx.fillStyle = "#f8f8f8";
+        ctx.fillRect(0, 0, state.width, state.height);
+      },
       
-      callbacks: {
-        // init callback uwu
-        onInit: (state) => {
-          console.log("Visualization initialized! :333");
-          state.custom = { lastBallPos: { x: 0, y: 0 } };
-        },
+      onSimulationTick: function(state, deltaTime) {
+        const step = deltaTime / 16.67;
+
+        const speed_adj = state.inputs.speed / 10.0;
         
-        // render callback - draw the scene! >_<
-        render: (ctx, state) => {
-          const ball = state.icons.ball;
-          const sun = state.icons.sun;
-          
-          // draw background gradient uwu
-          const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-          gradient.addColorStop(0, "#87CEEB");
-          gradient.addColorStop(1, "#E0F6FF");
-          ctx.fillStyle = gradient;
-          ctx.fillRect(0, 0, 500, 400);
-          
-          // draw trail if in orbit mode :3
-          if (state.inputs.mode === "orbit" && trailPoints.length > 0) {
-            ctx.strokeStyle = "rgba(255, 100, 100, 0.3)";
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(trailPoints[0].x, trailPoints[0].y);
-            for (let i = 1; i < trailPoints.length; i++) {
-              ctx.lineTo(trailPoints[i].x, trailPoints[i].y);
-            }
-            ctx.stroke();
-          }
-          
-          // draw sun glow effect uwu
-          if (state.inputs.mode === "orbit") {
-            const sunGlow = ctx.createRadialGradient(sun.x, sun.y, 5, sun.x, sun.y, 40);
-            sunGlow.addColorStop(0, "rgba(255, 200, 0, 0.5)");
-            sunGlow.addColorStop(1, "rgba(255, 200, 0, 0)");
-            ctx.fillStyle = sunGlow;
-            ctx.fillRect(sun.x - 40, sun.y - 40, 80, 80);
-          }
-          
-          // draw ground for bounce mode :3
-          if (state.inputs.mode === "bounce") {
-            ctx.fillStyle = "#8B4513";
-            ctx.fillRect(0, 380, 500, 20);
-          }
-        },
-        
-        // simulation tick - physics! :333
-        onSimulationTick: (state, deltaTime) => {
-          const ball = state.icons.ball;
-          const sun = state.icons.sun;
-          const mode = state.inputs.mode;
-          const dt = Math.min(deltaTime / 16.67, 2); // normalize to 60fps uwu
-          
-          if (mode === "bounce") {
-            // clear trail in bounce mode >_<
-            trailPoints = [];
-            
-            // apply gravity uwu
-            ballVelY += state.inputs.gravity * dt;
-            
-            // update position :3
-            ball.x += ballVelX * dt;
-            ball.y += ballVelY * dt;
-            
-            // bounce off walls! uwu
-            if (ball.x <= 15 || ball.x >= 485) {
-              ballVelX *= -state.inputs.bounce;
-              ball.x = ball.x <= 15 ? 15 : 485;
-            }
-            
-            // bounce off ground and ceiling! :333
-            if (ball.y >= 365) {
-              ballVelY *= -state.inputs.bounce;
-              ball.y = 365;
-            }
-            if (ball.y <= 15) {
-              ballVelY *= -state.inputs.bounce;
-              ball.y = 15;
-            }
-            
-            // update icon position >_<
-            const iconElem = document.getElementById("1stlaw-icon-ball");
-            if (iconElem) {
-              iconElem.style.left = ball.x + 'px';
-              iconElem.style.top = ball.y + 'px';
-            }
-          } 
-          else if (mode === "orbit") {
-            // gravity-based orbit! uwu
-            const dx = sun.x - ball.x;
-            const dy = sun.y - ball.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            
-            if (dist > 5) { // avoid division by zero :3
-              const force = (state.inputs.gravity * 100) / (dist * dist);
-              const fx = (dx / dist) * force;
-              const fy = (dy / dist) * force;
-              
-              ballVelX += fx * dt;
-              ballVelY += fy * dt;
-            }
-            
-            // update position uwu
-            ball.x += ballVelX * dt;
-            ball.y += ballVelY * dt;
-            
-            // keep in bounds >_<
-            ball.x = Math.max(15, Math.min(485, ball.x));
-            ball.y = Math.max(15, Math.min(385, ball.y));
-            
-            // add to trail :333
-            trailPoints.push({ x: ball.x, y: ball.y });
-            if (trailPoints.length > 100) trailPoints.shift();
-            
-            // update icon position uwu
-            const iconElem = document.getElementById("1stlaw-icon-ball");
-            if (iconElem) {
-              iconElem.style.left = ball.x + 'px';
-              iconElem.style.top = ball.y + 'px';
-            }
-          }
-        },
-        
-        // icon drag callback uwu
-        onIconDrag: (iconId, x, y, state) => {
-          console.log(`${iconId} dragged to (${x.toFixed(0)}, ${y.toFixed(0)}) >_<`);
-          
-          // reset velocity when ball is dragged :3
-          if (iconId === "ball") {
-            ballVelX = 0;
-            ballVelY = 0;
-            trailPoints = [];
-          }
-        },
-        
-        // input change callback :333
-        onInputChange: (inputId, value, state) => {
-          console.log(`${inputId} changed to ${value} uwu`);
+        const velocity_x = speed_adj * Math.sin(state.inputs.angle * Math.PI / 180);
+        const velocity_y = speed_adj * Math.cos(state.inputs.angle * Math.PI / 180);
+
+        let plane_pos = state.icons.plane.pos;
+
+        if (!state.crashed) {
+          plane_pos.x += velocity_x;
+          plane_pos.y += velocity_y;
         }
+
+        if (pointDist(plane_pos, state.icons.wtc1) < 20.0) {
+          // boom
+          state.icons.plane.setEmoji("💥");
+          state.crashed = true;
+
+          console.log("BOOM!");
+        }
+
+        if (pointDist(plane_pos, state.icons.wtc2) < 20.0) {
+          // boom
+          state.icons.plane.setEmoji("💥");
+          state.crashed = true;
+
+          console.log("BOOM!");
+        }
+
+        plane_pos.x = Math.max(plane_pos.x, 0);
+        plane_pos.y = Math.max(plane_pos.y, 0);
+        plane_pos.x = Math.min(plane_pos.x, state.width);
+        plane_pos.y = Math.min(plane_pos.y, state.height);
+
+        state.icons.plane.setPosition(plane_pos.x, plane_pos.y);
       }
     });
 </script>
