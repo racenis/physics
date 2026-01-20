@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Newton's Laws -- Physics for Programmers</title>
 </head>
+
 <body>
     <center>
         <table width="640" border="1">
@@ -15,12 +17,12 @@
                         <h1>
                             Physics for Programmers
                         </h1>
-                        <hr/>
+                        <hr />
                         <h2>
                             Newton's Laws
                         </h2>
                     </center>
-                    <hr/>
+                    <hr />
 
                     <p>
                         Isaac Newton is a guy who supposedly discovered a bunch of important
@@ -32,18 +34,18 @@
                         After inventing gravity and founding Apple Computer with his BFF Bill
                         Gates in 1674, Newton decided to explain his work in a couple of simple
                         rules in his 1687 autobiography <i>Philosophiæ Naturalis
-                        Principia Mathematica</i>.
+                            Principia Mathematica</i>.
                     </p>
 
                     <center>
-                        <br/>
+                        <br />
                         <i>
                             &ldquo;If thingy goes straight, thingy does it until it gets
-                            forced not to.&rdquo;<br/>
-                            <img width="400" height="1" src="image/1px.gif"/>&ndash; Newton
+                            forced not to.&rdquo;<br />
+                            <img width="400" height="1" src="image/1px.gif" />&ndash; Newton
                         </i>
-                        <br/>
-                        <br/>
+                        <br />
+                        <br />
                     </center>
 
 
@@ -55,6 +57,104 @@
                         </div>
                     </center>
 
+                    <p>
+                        The widget above shows an object moving at a constant velocity. This
+                        velocity is usually represented as a vector. In the widget above, you
+                        can modify the vector by changing its <i>angle</i> and <i>magnitude</i>.
+                        This way of representing coordinates is known as <b>polar coordinates</b>,
+                        but you can freely change between this form and Big D's form.
+                    </p>
+
+                    <p>
+                        If you look closely, you can notice that the object in the widget above
+                        moves in a straigt line at constant speed. This is what Newton is talking
+                        about in his first law.
+                    </p>
+
+                    <center>
+                        <br />
+                        <i>
+                            &ldquo;If a thingy is forced, it will move straight into that
+                            direction.&rdquo;<br />
+                            <img width="400" height="1" src="image/1px.gif" />&ndash; Newton
+                        </i>
+                        <br />
+                        <br />
+                    </center>
+
+                    <center>
+                        <div id="2ndlaw">
+                            <b>
+                                YOU NEED TO ENABLE JAVASCRIPT, YOU SILLY WUNKUS!
+                            </b>
+                        </div>
+                    </center>
+
+                    <p>
+                        The widget above is programmed to accelerate the spaceship straight into
+                        the direction it's facing. If you set the acceleration to a non-zero value,
+                        you'll see the velocity of the spaceship increase into the direction that
+                        it's facing in. If you set the velocity back to zero, it will hold that
+                        velocity.
+                    </p>
+
+                    <p>
+                        If you try applying some angular acceleration spin the spaceship up, you'll
+                        see that it starts moving in circles. This is because as the spaceship 
+                        rotates, the acceleration vector will rotate with it. The acceleration being
+                        applied still pushes the spaceship straight at any instant, it just
+                        averages over time, resulting in a spinning motion.
+                    </p>
+
+                    <center>
+                        <br />
+                        <i>
+                            &ldquo;If thingy does something to another thingy, that thingy
+                            will do that thing back.&rdquo;<br />
+                            <img width="400" height="1" src="image/1px.gif" />&ndash; Newton
+                        </i>
+                        <br />
+                        <br />
+                    </center>
+
+                    <center>
+                        <div id="3rdlaw">
+                            <b>
+                                YOU NEED TO ENABLE JAVASCRIPT, YOU SILLY WUNKUS!
+                            </b>
+                        </div>
+                    </center>
+
+                    <p>
+                        The widget above shows two space balls exerting a force (gravity) on each
+                        other. As you might have noticed, an object exerting a force must itself be
+                        subject to that same force.
+                    </p>
+
+                    <p>
+                        However the actual movement depends on the mass of the object. A force will
+                        have easier time moving objects with less mass, than moving objects with
+                        more mass.
+                    </p>
+
+                    <center>
+                        <div id="spinny">
+                            <b>
+                                YOU NEED TO ENABLE JAVASCRIPT, YOU SILLY WUNKUS!
+                            </b>
+                        </div>
+                    </center>
+
+                    <p>
+                        The mass of the earth and the mass of the sun in the widget above have the
+                        same mass ratio as they have in real life. Since the sun has a considerably
+                        higher mass than earth, it barely moves.
+                    </p>
+
+                    <p>
+                        Try increasing the mass of the earth or the mass of the sun and see what
+                        happens.
+                    </p>
 
                     <center>
                         <table border="1" width="480">
@@ -63,7 +163,7 @@
                                     <h4>
                                         Note
                                     </h4>
-                                    <hr/>
+                                    <hr />
                                     <p>
                                         When Newton wrote this down they hadn't invented equations
                                         yet. This is an artists rendition of the law.
@@ -80,7 +180,7 @@
                     </p>
 
                     <center>
-                        <img src="image/coords.gif" alt="Coordinate illustration."/><br/>
+                        <img src="image/coords.gif" alt="Coordinate illustration." /><br />
                         <i>fig 1.2.1. Depiction of coordinates and their axii.</i>
                     </center>
 
@@ -103,135 +203,567 @@
         </table>
     </center>
 
-<script src="lib.js"></script>
+    <script src="lib.js"></script>
 
-<script>
+    <script>
 
-  let plane_pos = {x: 250, y: 200};
+    let plane_pos = { x: 250, y: 200 };
 
-  let wtc1_pos = {x: 360, y: 50};
-  let wtc2_pos = {x: 400, y: 100};
+    let wtc1_pos = { x: 360, y: 50 };
+    let wtc2_pos = { x: 400, y: 100 };
 
-  function pointDist(p1, p2) {
-    p1p2 = {x: p2.x - p1.x, y: p2.y - p1.y};
-    return Math.sqrt(p1p2.x * p1p2.x + p1p2.y * p1p2.y);
-  }
+    function pointDist(p1, p2) {
+        p1p2 = { x: p2.x - p1.x, y: p2.y - p1.y };
+        return Math.sqrt(p1p2.x * p1p2.x + p1p2.y * p1p2.y);
+    }
 
-  var viz = new InteractiveViz({
-      containerId: "1stlaw",
-      title: "Newton's First Law",
-      canvasWidth: 480,
-      canvasHeight: 320,
-      
-      inputs: [
-        { 
-          type: 'slider', 
-          id: 'speed', 
-          label: 'Speed', 
-          min: 0, 
-          max: 10, 
-          initial: 2,
-          step: 1,
-          onChange: function(value, state) {
-            console.log('SLIDER onChange - value:', value, 'state:', state);
-          }
+    new InteractiveViz({
+        containerId: "1stlaw",
+        title: "Newton's First Law",
+        canvasWidth: 480,
+        canvasHeight: 320,
+
+        inputs: [
+            {
+                type: 'slider',
+                id: 'speed',
+                label: 'Magnitude',
+                min: 0,
+                max: 10,
+                initial: 2,
+                step: 1,
+                onChange: function (value, state) {
+                    console.log('SLIDER onChange - value:', value, 'state:', state);
+                }
+            },
+            {
+                type: 'slider',
+                id: 'angle',
+                label: 'Angle',
+                min: 0,
+                max: 360,
+                initial: 315,
+                step: 1,
+                onChange: function (value, state) {
+                    console.log('SLIDER onChange - value:', value, 'state:', state);
+                }
+            },
+
+            {
+                type: 'button',
+                id: 'reset',
+                label: 'Reset',
+                onClick: function (state) {
+                    state.icons.plane.setEmoji("✈️");
+                    state.icons.plane.setPosition(plane_pos.x, plane_pos.y);
+
+                    state.icons.wtc1.setPosition(wtc1_pos.x, wtc1_pos.y);
+                    state.icons.wtc2.setPosition(wtc2_pos.x, wtc2_pos.y);
+
+                    state.crashed = false;
+                }
+            }
+        ],
+
+        icons: [
+            {
+                id: 'wtc1',
+                emoji: '🏢',
+                x: wtc1_pos.x, y: wtc1_pos.y
+            },
+            {
+                id: 'wtc2',
+                emoji: '🏢',
+                x: wtc2_pos.x, y: wtc2_pos.y
+            },
+            {
+                id: 'plane',
+                emoji: '✈️',
+                x: plane_pos.x, y: plane_pos.y
+            },
+        ],
+
+        onInit: function (state) {
+            state.crashed = false;
         },
-        { 
-          type: 'slider', 
-          id: 'angle', 
-          label: 'Angle', 
-          min: 0, 
-          max: 360, 
-          initial: 145,
-          step: 1,
-          onChange: function(value, state) {
-            console.log('SLIDER onChange - value:', value, 'state:', state);
-          }
+
+        render: function (ctx, state) {
+            ctx.fillStyle = "#f8f8f8";
+            ctx.fillRect(0, 0, state.width, state.height);
         },
 
-        {
-          type: 'button',
-          id: 'reset',
-          label: 'Reset',
-          onClick: function(state) {
-            state.icons.plane.setEmoji("✈️");
+        onSimulationTick: function (state, deltaTime) {
+            const step = deltaTime / 16.67;
+
+            const speed_adj = state.inputs.speed / 10.0;
+
+            const velocity_x = speed_adj * Math.cos(state.inputs.angle * Math.PI / 180);
+            const velocity_y = speed_adj * Math.sin(state.inputs.angle * Math.PI / 180);
+
+            let plane_pos = state.icons.plane.pos;
+
+            if (!state.crashed) {
+                plane_pos.x += velocity_x;
+                plane_pos.y += velocity_y;
+            }
+
+            if (!state.crashed && pointDist(plane_pos, state.icons.wtc1) < 20.0) {
+                // boom
+                state.icons.plane.setEmoji("💥");
+                state.crashed = true;
+
+                console.log("BOOM!");
+            }
+
+            if (!state.crashed && pointDist(plane_pos, state.icons.wtc2) < 20.0) {
+                // boom
+                state.icons.plane.setEmoji("💥");
+                state.crashed = true;
+
+                console.log("BOOM!");
+            }
+
+            plane_pos.x = Math.max(plane_pos.x, 0);
+            plane_pos.y = Math.max(plane_pos.y, 0);
+            plane_pos.x = Math.min(plane_pos.x, state.width);
+            plane_pos.y = Math.min(plane_pos.y, state.height);
+
             state.icons.plane.setPosition(plane_pos.x, plane_pos.y);
+            state.icons.plane.setRotation((state.inputs.angle * Math.PI / 180) + Math.PI / 4);
+        }
+    });
 
-            state.icons.wtc1.setPosition(wtc1_pos.x, wtc1_pos.y);
-            state.icons.wtc2.setPosition(wtc2_pos.x, wtc2_pos.y);
+    // the next two functions are AI slop, generated by ChatGemini
+    function generateStars(state) {
+        const starCount = 200;
+
+        state.stars = Array.from({ length: starCount }, () => {
+            // Color bias: mostly white, some red/blue
+            const colorRoll = Math.random();
+            let color;
+            if (colorRoll < 0.15) {
+                color = { r: 255, g: 200, b: 200 }; // reddish
+            } else if (colorRoll < 0.30) {
+                color = { r: 200, g: 220, b: 255 }; // blueish
+            } else {
+                color = { r: 255, g: 255, b: 255 }; // white
+            }
+
+            return {
+                x: Math.random() * state.width,
+                y: Math.random() * state.height,
+                radius: Math.random() * 1.5 + 0.5,
+
+                baseBrightness: Math.random() * 0.5 + 0.5, // 0.5–1.0
+                twinkleAmplitude: Math.random() * 0.3 + 0.1,
+                frequency: Math.random() * 1.5 + 0.2, // radians/sec-ish
+                phase: Math.random() * Math.PI * 2,
+
+                color
+            };
+        });
+    }
+
+    function drawStarfield(ctx, state) {
+        if (!state.stars) {
+            generateStars(state);
+            state.startTime = performance.now();
+        }
+
+        const time = (performance.now() - state.startTime) * 0.001;
+
+        // Space background
+        ctx.fillStyle = "#0b0e1a";
+        ctx.fillRect(0, 0, state.width, state.height);
+
+        for (const s of state.stars) {
+            const twinkle =
+            s.baseBrightness +
+            Math.sin(time * s.frequency + s.phase) * s.twinkleAmplitude;
+
+            // Clamp brightness
+            const brightness = Math.max(0, Math.min(1, twinkle));
+
+            ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${brightness})`;
+
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+
+
+
+    
+    function actual_mod(n, m) {
+        return ((n % m) + m) % m;
+    }
+
+    new InteractiveViz({
+        containerId: "2ndlaw",
+        title: "Newton's Second Law",
+        canvasWidth: 480,
+        canvasHeight: 320,
+
+        inputs: [
+            {
+                type: 'slider',
+                id: 'acceleration_linear',
+                label: 'Acceleration (linear)',
+                min: -10,
+                max: 10,
+                initial: 0,
+                step: 1
+            },
+            {
+                type: 'slider',
+                id: 'acceleration_angular',
+                label: 'Acceleration (angular)',
+                min: -10,
+                max: 10,
+                initial: 0,
+                step: 1
+            },
+
+            {
+                type: 'button',
+                id: 'reset',
+                label: 'Reset',
+                onClick: function (state) {
+                    state.viz.config.onInit(state);
+                }
+            }
+        ],
+
+        icons: [
+            {
+                id: 'rocket',
+                emoji: '🚀',
+                onDrag: (x, y, state) => {
+                    state.position.x = x;
+                    state.position.y = y;
+                }
+            },
+        ],
+
+        onInit: function (state) {
+            state.velocity = { x: 0, y: 0 };
+            state.angular_velocity = 0.0;
+            state.rotation = 0.0;
+            state.position = { x: state.width / 2, y: state.height / 2 };
+
+            state.icons.rocket.setPosition(state.position.x, state.position.y);
+        },
+
+        render: function (ctx, state) {
+            drawStarfield(ctx, state);
+        },
+
+        onSimulationTick: function (state, deltaTime) {
+            const step = deltaTime / 16.67;
+
+            // apply linear acceleration
+            state.velocity.x += step * 0.001 * state.inputs.acceleration_linear * Math.cos(state.rotation);
+            state.velocity.y += step * 0.001 * state.inputs.acceleration_linear * Math.sin(state.rotation);
+
+            // apply angular acceleration
+            state.angular_velocity += step * 0.0001 * state.inputs.acceleration_angular;
+
+            // apply velocity
+            state.position.x += state.velocity.x;
+            state.position.y += state.velocity.y;
+            state.rotation += state.angular_velocity;
+
+
+            // clamp values
+            state.position.x = actual_mod(state.position.x, state.width);
+            state.position.y = actual_mod(state.position.y, state.height);
+
+            state.velocity.x = Math.max(state.velocity.x, -10.0)
+            state.velocity.y = Math.max(state.velocity.y, -10.0)
+            state.velocity.x = Math.min(state.velocity.x, 10.0)
+            state.velocity.y = Math.min(state.velocity.y, 10.0)
+
+            // apply 
+            state.icons.rocket.setPosition(state.position.x, state.position.y);
+            state.icons.rocket.setRotation(state.rotation + Math.PI / 4);
+        }
+    });
+
+    new InteractiveViz({
+        containerId: "3rdlaw",
+        title: "Newton's Third Law",
+        canvasWidth: 480,
+        canvasHeight: 320,
+
+        inputs: [
+            {
+                type: 'slider',
+                id: 'mass_ball1',
+                label: 'Basketball\'s Mass',
+                min: 1,
+                max: 10,
+                initial: 1,
+                step: 1
+            },
+            {
+                type: 'slider',
+                id: 'mass_ball2',
+                label: 'Tennis Ball\'s Mass',
+                min: 1,
+                max: 10,
+                initial: 1,
+                step: 1
+            },
+
+            {
+                type: 'button',
+                id: 'reset',
+                label: 'Reset',
+                onClick: function (state) {
+                    state.viz.config.onInit(state);
+                }
+            }
+        ],
+
+        icons: [
+            {
+                id: 'ball1',
+                emoji: '🏀',
+                onDrag: (x, y, state) => {
+                    state.ball1_position.x = x;
+                    state.ball1_position.y = y;
+
+                    state.ball1_velocity.x = 0;
+                    state.ball1_velocity.y = 0;
+                }
+            },
+            {
+                id: 'ball2',
+                emoji: '🎾',
+                onDrag: (x, y, state) => {
+                    state.ball2_position.x = x;
+                    state.ball2_position.y = y;
+
+                    state.ball2_velocity.x = 0;
+                    state.ball2_velocity.y = 0;
+                }
+            }
+        ],
+
+        onInit: function (state) {
+            state.ball1_velocity = { x: 0, y: 0 };
+            state.ball1_position = { x: state.width / 2 + 100, y: state.height / 2 };
+            state.ball2_velocity = { x: 0, y: 0 };
+            state.ball2_position = { x: state.width / 2 - 100, y: state.height / 2 };
+
+            state.icons.ball1.setPosition(state.ball1_position.x, state.ball1_position.y);
+            state.icons.ball2.setPosition(state.ball2_position.x, state.ball2_position.y);
+        },
+
+        render: function (ctx, state) {
+            drawStarfield(ctx, state);
+        },
+
+        onSimulationTick: function (state, deltaTime) {
+            //const step = 1.0 * (deltaTime / 16.67);
+            const step = 1000000000000.0 * (deltaTime / 16.67);
+
+            const grav = 6.6743 * Math.pow(10, -11);
+
+            const dist_x = state.ball1_position.x - state.ball2_position.x;
+            const dist_y = state.ball1_position.y - state.ball2_position.y;
+            const dist_squared = dist_x * dist_x + dist_y * dist_y;
+            const dist = Math.sqrt(dist_squared);
+            const total_mass = state.inputs.mass_ball2 * state.inputs.mass_ball1;
+            const force = grav * (total_mass/dist_squared);
+
+            state.ball1_velocity.x += step * (-dist_x / dist) * (force / state.inputs.mass_ball1);
+            state.ball1_velocity.y += step * (-dist_y / dist) * (force / state.inputs.mass_ball1);
+
+            state.ball2_velocity.x += step * (dist_x / dist) * (force / state.inputs.mass_ball2);
+            state.ball2_velocity.y += step * (dist_y / dist) * (force / state.inputs.mass_ball2);
+
+   
+
+            // apply velocity
+            state.ball1_position.x += state.ball1_velocity.x;
+            state.ball1_position.y += state.ball1_velocity.y;
+            state.ball2_position.x += state.ball2_velocity.x;
+            state.ball2_position.y += state.ball2_velocity.y;
+
+            // hanlde collision
+            if (!state.crashed && pointDist(state.ball1_position, state.ball2_position) < 10.0) {
+                // this isn't actually correct, but whatever
+                state.ball1_velocity.x *= -0.82;
+                state.ball1_velocity.y *= -0.82;
+                state.ball2_velocity.x *= -0.82;
+                state.ball2_velocity.y *= -0.82;
+
+                state.ball1_position.x += 2.0 * state.ball1_velocity.x;
+                state.ball1_position.y += 2.0 * state.ball1_velocity.y;
+                state.ball2_position.x += 2.0 * state.ball2_velocity.x;
+                state.ball2_position.y += 2.0 * state.ball2_velocity.y;
+
+                console.log("boing!");
+            }
+
+            // clamp values
+            state.ball1_position.x = actual_mod(state.ball1_position.x, state.width);
+            state.ball1_position.y = actual_mod(state.ball1_position.y, state.height);
+            state.ball2_position.x = actual_mod(state.ball2_position.x, state.width);
+            state.ball2_position.y = actual_mod(state.ball2_position.y, state.height);
+
+            // apply new position to icons
+            state.icons.ball1.setPosition(state.ball1_position.x, state.ball1_position.y);
+            state.icons.ball2.setPosition(state.ball2_position.x, state.ball2_position.y);
+
+            // also recalculate scales
+            const total_scale = state.inputs.mass_ball1 + state.inputs.mass_ball2;
+            state.icons.ball1.setScale(0.5 + state.inputs.mass_ball1 / total_scale);
+            state.icons.ball2.setScale(0.5 + state.inputs.mass_ball2 / total_scale);
+        }
+    });
+
+    new InteractiveViz({
+        containerId: "spinny",
+        title: "Solar System (excerpt)",
+        canvasWidth: 480,
+        canvasHeight: 320,
+
+        inputs: [
+            {
+                type: 'slider',
+                id: 'mass_sun',
+                label: 'Sun\'s Mass',
+                min: 1,
+                max: 300000,
+                initial: 300000,
+                step: 1
+            },
+            {
+                type: 'slider',
+                id: 'mass_earth',
+                label: 'Earth\'s Mass',
+                min: 1,
+                max: 300000,
+                initial: 1,
+                step: 1000
+            },
+
+            {
+                type: 'button',
+                id: 'reset',
+                label: 'Reset',
+                onClick: function (state) {
+                    state.viz.config.onInit(state);
+                }
+            }
+        ],
+
+        icons: [
+            {
+                id: 'sun',
+                emoji: '🌞',
+                onDrag: (x, y, state) => {
+                    state.sun_position.x = x;
+                    state.sun_position.y = y;
+                }
+            },
+            {
+                id: 'earth',
+                emoji: '🌍',
+                onDrag: (x, y, state) => {
+                    state.earth_position.x = x;
+                    state.earth_position.y = y;
+
+                    state.earth_velocity.x = 0;
+                    state.earth_velocity.y = 0;
+                }
+            }
+        ],
+
+        onInit: function (state) {
+            state.earth_velocity = { x: 0, y: -1.5 };
+            state.earth_position = { x: state.width / 2 + 100, y: state.height / 2 };
+            state.sun_velocity = { x: 0, y: 0 };
+            state.sun_position = { x: state.width / 2, y: state.height / 2 };
 
             state.crashed = false;
-          }
-        }
-      ],
+            state.icons.earth.setEmoji("🌍");
+            state.icons.sun.setEmoji("🌞");
 
-      icons: [
-        { 
-          id: 'wtc1', 
-          emoji: '🏢', 
-          x: wtc1_pos.x, y: wtc1_pos.y
+            state.icons.earth.setPosition(state.earth_position.x, state.earth_position.y);
+            state.icons.sun.setPosition(state.sun_position.x, state.sun_position.y);
         },
-        { 
-          id: 'wtc2', 
-          emoji: '🏢', 
-          x: wtc2_pos.x, y: wtc2_pos.y
+
+        render: function (ctx, state) {
+            drawStarfield(ctx, state);
         },
-        { 
-          id: 'plane', 
-          emoji: '✈️', 
-          x: plane_pos.x, y: plane_pos.y
-        },
-      ],
 
-      onInit: function(state) {
-        state.crashed = false;
-      },
-      
-      render: function(ctx, state) {
-        ctx.fillStyle = "#f8f8f8";
-        ctx.fillRect(0, 0, state.width, state.height);
-      },
-      
-      onSimulationTick: function(state, deltaTime) {
-        const step = deltaTime / 16.67;
+        onSimulationTick: function (state, deltaTime) {
+            const step = 10000000.0 * (deltaTime / 16.67);
 
-        const speed_adj = state.inputs.speed / 10.0;
-        
-        const velocity_x = speed_adj * Math.sin(state.inputs.angle * Math.PI / 180);
-        const velocity_y = speed_adj * Math.cos(state.inputs.angle * Math.PI / 180);
 
-        let plane_pos = state.icons.plane.pos;
+       
 
-        if (!state.crashed) {
-          plane_pos.x += velocity_x;
-          plane_pos.y += velocity_y;
+            if (state.crashed) return;
+
+            const grav = 6.6743 * Math.pow(10, -11);
+
+            const dist_x = state.earth_position.x - state.sun_position.x;
+            const dist_y = state.earth_position.y - state.sun_position.y;
+            const dist_squared = dist_x * dist_x + dist_y * dist_y;
+            const dist = Math.sqrt(dist_squared);
+            const total_mass = state.inputs.mass_sun * state.inputs.mass_earth;
+            const force = grav * (total_mass/dist_squared);
+
+            state.earth_velocity.x += step * (-dist_x / dist) * (force / state.inputs.mass_earth);
+            state.earth_velocity.y += step * (-dist_y / dist) * (force / state.inputs.mass_earth);
+
+            state.sun_velocity.x += step * (dist_x / dist) * (force / state.inputs.mass_sun);
+            state.sun_velocity.y += step * (dist_y / dist) * (force / state.inputs.mass_sun);
+
+            
+
+            //state.earth_velocity.x = 0;
+            //state.earth_velocity.y = 0;
+
+            //state.sun_velocity.y = 0;
+            //state.sun_velocity.x = 0;
+
+
+            // apply velocity
+            state.earth_position.x += state.earth_velocity.x;
+            state.earth_position.y += state.earth_velocity.y;
+            state.sun_position.x += state.sun_velocity.x;
+            state.sun_position.y += state.sun_velocity.y;
+
+            // hanlde crashing
+            if (!state.crashed && pointDist(state.earth_position, state.sun_position) < 10.0) {
+                // boom
+                state.icons.earth.setEmoji("💥");
+                //state.icons.sun.setEmoji("😡");
+                state.crashed = true;
+
+                console.log("BOOM!");
+            }
+
+            // clamp values
+            state.earth_position.x = actual_mod(state.earth_position.x, state.width);
+            state.earth_position.y = actual_mod(state.earth_position.y, state.height);
+            state.sun_position.x = actual_mod(state.sun_position.x, state.width);
+            state.sun_position.y = actual_mod(state.sun_position.y, state.height);
+
+            // apply 
+            state.icons.earth.setPosition(state.earth_position.x, state.earth_position.y);
+            state.icons.sun.setPosition(state.sun_position.x, state.sun_position.y);
         }
-
-        if (pointDist(plane_pos, state.icons.wtc1) < 20.0) {
-          // boom
-          state.icons.plane.setEmoji("💥");
-          state.crashed = true;
-
-          console.log("BOOM!");
-        }
-
-        if (pointDist(plane_pos, state.icons.wtc2) < 20.0) {
-          // boom
-          state.icons.plane.setEmoji("💥");
-          state.crashed = true;
-
-          console.log("BOOM!");
-        }
-
-        plane_pos.x = Math.max(plane_pos.x, 0);
-        plane_pos.y = Math.max(plane_pos.y, 0);
-        plane_pos.x = Math.min(plane_pos.x, state.width);
-        plane_pos.y = Math.min(plane_pos.y, state.height);
-
-        state.icons.plane.setPosition(plane_pos.x, plane_pos.y);
-      }
     });
-</script>
+
+    </script>
 
 </body>
+
 </html>

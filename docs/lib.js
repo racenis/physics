@@ -15,7 +15,8 @@ class InteractiveViz {
       inputs: {},
       icons: {},
       width: this.canvasWidth,  // canvas dimensions for ez access! :3
-      height: this.canvasHeight
+      height: this.canvasHeight,
+      viz: this  // reference to the viz class itself! >_<
     };
     
     // animation stuff :3
@@ -70,6 +71,7 @@ class InteractiveViz {
         label: icon.label,
         hidden: false,  // for setHidden method >_<
         scale: 1.0,     // for setScale method uwu
+        rotation: 0,    // for setRotation method (in radians!) :3
         
         // method to update icon position! :333
         setPosition: function(iconId) {
@@ -133,13 +135,28 @@ class InteractiveViz {
         setScale: function(iconId) {
           return function(scale) {
             self.state.icons[iconId].scale = scale;
-            var elem = document.getElementById(self.containerId + '-icon-' + iconId);
-            if (elem) {
-              elem.style.transform = 'translate(-50%, -50%) scale(' + scale + ')';
-            }
+            self.updateIconTransform(iconId);  // use unified transform update! :3
+          };
+        }(icon.id),
+        
+        // method to rotate icon! (radians) >_<
+        setRotation: function(iconId) {
+          return function(radians) {
+            self.state.icons[iconId].rotation = radians;
+            self.updateIconTransform(iconId);  // use unified transform update! uwu
           };
         }(icon.id)
       };
+    }
+  }
+  
+  // helper to update icon transform (combines scale and rotation!) :333
+  updateIconTransform(iconId) {
+    var icon = this.state.icons[iconId];
+    var elem = document.getElementById(this.containerId + '-icon-' + iconId);
+    if (elem) {
+      var rotation = (icon.rotation * 180 / Math.PI);  // convert radians to degrees for CSS uwu
+      elem.style.transform = 'translate(-50%, -50%) scale(' + icon.scale + ') rotate(' + rotation + 'deg)';
     }
   }
   
